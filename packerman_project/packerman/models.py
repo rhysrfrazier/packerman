@@ -1,7 +1,7 @@
 from django.db import models
 import uuid
 
-class User(models.Model):
+class Users(models.Model):
     name = models.CharField(max_length=100)
     img = models.TextField()
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -31,3 +31,8 @@ class Events(models.Model):
     def __str__(self):
         return self.name
     
+class User_Items(models.Model):
+    item_id = models.ForeignKey(Items, on_delete=models.CASCADE, related_name='items')
+    user_id = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='users')
+    out_date = models.DateField(auto_now=False, auto_now_add=False)
+    in_date = models.DateField(auto_now=False, auto_now_add=False)
