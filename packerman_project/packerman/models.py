@@ -35,12 +35,12 @@ class User_Item(models.Model):
     item_id = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='items')
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
     out_date = models.DateField(auto_now=False, auto_now_add=False)
-    in_date = models.DateField(auto_now=False, auto_now_add=False)
+    in_date = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
 
 class Event_Item(models.Model):
     item_id = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='packed_items')
     event_id = models.ForeignKey(Event, on_delete=models.CASCADE, related_name = 'events')
     packed_date = models.DateField(auto_now=False, auto_now_add=False)
-    unpacked_date = models.DateField(auto_now=False, auto_now_add=False)
+    unpacked_date = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
     packed_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='packing_user')
-    unpacked_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='unpacking_user')
+    unpacked_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='unpacking_user', blank=True, null=True)
