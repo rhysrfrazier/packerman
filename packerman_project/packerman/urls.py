@@ -12,5 +12,5 @@ urlpatterns = [
    path ('user_items/', views.User_ItemList.as_view(), name='user_item_list'),
    path('user_items/<int:pk>', views.User_ItemDetail.as_view(), name='user_item_detail'),
    path ('event_items/', views.Event_ItemList.as_view(), name='event_item_list'),
-   path('event_item/<int:pk>', views.Event_ItemDetail.as_view(), name='event_item_detail')
+   path('event_items/<int:pk>', views.Event_ItemDetail.as_view(), name='event_item_detail')
 ]
