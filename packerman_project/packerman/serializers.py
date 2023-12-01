@@ -28,37 +28,17 @@ class User_ItemSerializer(serializers.HyperlinkedModelSerializer):
 
 class Event_ItemSerializer(serializers.HyperlinkedModelSerializer):
 
-    item = serializers.HyperlinkedRelatedField(
-        view_name='item_detail',
-        read_only=True
-    )
-
     item_id = serializers.PrimaryKeyRelatedField(
         queryset=Item.objects.all(),
-    )
-
-    event = serializers.HyperlinkedRelatedField(
-        view_name='event_detail',
-        read_only=True
     )
 
     event_id = serializers.PrimaryKeyRelatedField(
         queryset=Event.objects.all(),
     )
 
-    packed_by = serializers.HyperlinkedRelatedField(
-        view_name = 'user_detail',
-        read_only=True
-    )
-
     packed_by_id = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all(),
         source='packed_by'
-    )
-
-    unpacked_by = serializers.HyperlinkedRelatedField(
-        view_name= 'user_detail',
-        read_only=True
     )
 
     unpacked_by_id = serializers.PrimaryKeyRelatedField(
@@ -69,7 +49,7 @@ class Event_ItemSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Event_Item
-        fields = ('id', 'item', 'item_id', 'event', 'event_id', 'packed_date', 'unpacked_date', 'packed_by', 'packed_by_id', 'unpacked_by', 'unpacked_by_id')
+        fields = ('id', 'item_id', 'event_id', 'packed_date', 'unpacked_date', 'packed_by_id', 'unpacked_by_id')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
