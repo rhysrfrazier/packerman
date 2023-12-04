@@ -2,6 +2,7 @@ import { redirect } from 'react-router-dom'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export default function Login() {
 
@@ -35,6 +36,11 @@ export default function Login() {
       submit()
     }
   }
+
+  useEffect(() => {
+    sessionStorage.clear()
+    console.log('logged out')
+  }, [])
 
   return (
     <div className='login'>

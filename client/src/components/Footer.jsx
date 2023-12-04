@@ -5,12 +5,12 @@ export default function Footer() {
 
     function logout() {
         sessionStorage.clear()
-        console.log('storage cleared')
+        console.log('logged out')
     }
 
     return (
         <div className='footer'>
-            <Link className='logout' to='/login' onClick={logout}>Logout</Link>
+            <Link className='logout' to='/login' onClick={logout}>Log Out</Link>
         </div>
     )
 }

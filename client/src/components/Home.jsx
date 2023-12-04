@@ -1,6 +1,6 @@
 import Footer from "./Footer"
 import HomeHeader from "./HomeHeader"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { useEffect } from "react"
 
 export default function Home(){
@@ -15,10 +15,10 @@ export default function Home(){
     }, [])
 
     return(
-        <div className='home'>
+        <div className='componentDiv'>
             <HomeHeader/>
-            <div className='homeBody'>
-                home
+            <div className='componentBody'>
+                <Link className='bigButton' to='/pack_or_unpack'>Packing/Unpacking</Link>
             </div>
             <Footer/>
         </div>

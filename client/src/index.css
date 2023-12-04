@@ -1,6 +1,32 @@
 body {
     margin: 0 auto;
     font-family: 'Raleway', sans-serif;
+    background-color: #331949;
+}
+
+.bigButton {
+    text-decoration: none;
+    color: #331949;
+    background-color: #9AC6C5;
+    padding: 1rem 0 1rem 0;
+    width: 65vw;
+    border-radius: 5px;
+    text-align: center
+}
+
+.componentDiv {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.componentBody {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* login */
@@ -73,6 +99,7 @@ body {
     justify-content: center;
 
     background-color: #5B2A86;
+    box-shadow: 5px -5px 5px #17022d5e;
 }
 
 .logout {
@@ -81,18 +108,11 @@ body {
     padding: .5rem 2rem .5rem 2rem;
     border-radius: 5px;
     border: none;
-    background-color: #9AC6C5;
+    background-color: #7785AC;
     color: #360568;
 }
 
 /*home*/
-.home{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 
 .homeHeader {
     position: absolute;
@@ -104,9 +124,19 @@ body {
     background-repeat: no-repeat;
     background-size: 100%;
     overflow: hidden;
+    box-shadow: 5px 5px 5px #17022d5e;
 }
 
-.homeBody {
-    
+/* packing/unpacking */
+.packHeader {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 15vh;
+    background-image: url('suitcase.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    overflow: hidden;
+    box-shadow: 5px 5px 5px #17022d5e;
 }
-
