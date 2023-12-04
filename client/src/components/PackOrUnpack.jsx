@@ -1,8 +1,20 @@
 import PackUnpackHeader from "./PackUnpackHeader"
 import Footer from "./Footer"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 export default function PackOrUnpack() {
+
+    // check that user is logged in
+    const navigate = useNavigate()
+    
+    useEffect(() => {
+        const loggedIn = sessionStorage.getItem('user_id')
+        if (!loggedIn){
+            navigate('/login')
+        }
+    }, [])
+
     return (
         <div className='componentDiv'>
             <PackUnpackHeader />

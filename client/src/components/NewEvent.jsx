@@ -1,29 +1,45 @@
 import PackUnpackHeader from "./PackUnpackHeader"
 import Footer from "./Footer"
-import { useState } from "react"
+import React, { useState, useContext, useEffect } from "react"
+import DataContext from "../DataContext"
 import axios from "axios"
 import { BASE_URL } from "../../globals"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function NewEvent() {
 
+    // check that user is logged in
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const loggedIn = sessionStorage.getItem('user_id')
+        if (!loggedIn){
+            navigate('/login')
+        }
+    }, [])
+
+    //stuff for making a new event and carrying the json over
     const [formState, setFormState] = useState({})
+    const { setEvent } = useContext(DataContext)
 
     function handleChange(event) {
         setFormState({ ...formState, [event.target.name]: event.target.value })
     }
 
     async function createNew(event) {
-        event.preventDefault()
 
         try {
             const response = await axios.post(`${BASE_URL}events/`, formState)
             if (response.status === 201) {
-                console.log('success!')
+                setEvent(response.data)
             } else {
-                console.log('oopsy woopsie, I made a little fucko boingo')
+                navigate('/new_trip')
+                console.log('err')
             }
         } catch (error) {
-            console.log(error.message)
+            navigate('/new_trip')
+            event.preventDefault()
+
         }
     }
 
@@ -40,27 +56,27 @@ export default function NewEvent() {
                         </label>
                     </div>
                     <div className='formSection'>
-                    <label>
-                        Start Date:
-                        <br />
-                        <input type='date' name='start_date' onChange={handleChange} />
-                    </label>
+                        <label>
+                            Start Date:
+                            <br />
+                            <input type='date' name='start_date' onChange={handleChange} />
+                        </label>
                     </div>
                     <div className='formSection'>
-                    <label>
-                        End Date:
-                        <br />
-                        <input type='date' name='end_date' onChange={handleChange} />
-                    </label>
+                        <label>
+                            End Date:
+                            <br />
+                            <input type='date' name='end_date' onChange={handleChange} />
+                        </label>
                     </div>
                     <div className='formSection'>
-                    <label>
-                        Event Type:
-                        <br />
-                        <input type='text' name='event_type' onChange={handleChange} />
-                    </label>
+                        <label>
+                            Event Type:
+                            <br />
+                            <input type='text' name='event_type' onChange={handleChange} />
+                        </label>
                     </div>
-                    <button className='medButton' type='submit'>Create Event</button>
+                    <Link to='/packing' className='medButton' onClick={createNew}>Create Event</Link>
                 </form>
             </div>
             <Footer />
