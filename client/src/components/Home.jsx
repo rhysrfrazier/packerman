@@ -1,4 +1,5 @@
 import Footer from "./Footer"
+import HomeHeader from "./HomeHeader"
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 
@@ -15,7 +16,10 @@ export default function Home(){
 
     return(
         <div className='home'>
-            <p>home</p>
+            <HomeHeader/>
+            <div className='homeBody'>
+                home
+            </div>
             <Footer/>
         </div>
     )

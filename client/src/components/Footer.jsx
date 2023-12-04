@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom"
 import Login from "../Login"
 
-export default function Footer(){
+export default function Footer() {
 
-    function logout(){
+    function logout() {
         sessionStorage.clear()
         console.log('storage cleared')
     }
 
-    return(
-        <Link to='/login' onClick={logout}>Logout</Link>
+    return (
+        <div className='footer'>
+            <Link className='logout' to='/login' onClick={logout}>Logout</Link>
+        </div>
     )
 }

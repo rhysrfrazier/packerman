@@ -1,0 +1,112 @@
+body {
+    margin: 0 auto;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* login */
+.login {
+    margin: none;
+    padding: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url('homebackground.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 150%;
+    overflow: hidden;
+}
+
+.rectangle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+
+    position: relative;
+    top: 10rem;
+
+    background-color: #331949eb;
+    box-shadow: 5px 5px 5px #17022d5e;
+    text-align: center;
+    color: #9AC6C5;
+}
+
+.welcome {
+    font-weight: 500;
+    font-size: 25px;
+    margin-bottom: 0rem;
+}
+
+.rectangle p {
+    margin-bottom: 2rem;
+}
+
+.sr-only{
+    color: rgba(0, 0, 0, 0);
+    font-size: 1px;
+}
+
+.rectangle input {
+    margin-bottom: 1rem;
+}
+
+.rectangle button {
+    padding: .5rem 2rem .5rem 2rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #9AC6C5;
+    color: #360568;
+}
+
+/*logout*/
+.footer {
+    position: absolute;
+    bottom: 0rem;
+    padding: 1rem 0 1rem 0;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+
+    background-color: #5B2A86;
+}
+
+.logout {
+   
+    text-decoration: none;
+    padding: .5rem 2rem .5rem 2rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #9AC6C5;
+    color: #360568;
+}
+
+/*home*/
+.home{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.homeHeader {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 15vh;
+    background-image: url('rope.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    overflow: hidden;
+}
+
+.homeBody {
+    
+}
+
