@@ -32,8 +32,8 @@ class Event(models.Model):
         return self.name
     
 class User_Item(models.Model):
-    item_id = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='item')
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
+    item_id = models.OneToOneField(Item, on_delete=models.CASCADE, related_name='item')
+    user_id = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user')
     out_date = models.DateField(auto_now=False, auto_now_add=False)
     in_date = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
 
