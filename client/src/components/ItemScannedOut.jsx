@@ -4,7 +4,7 @@ export default function ItemScannedOut({ item }) {
     let broken
     if (item.needs_repair) {
         broken =
-            <p>WARNING: this item has been reported broken. Please verify safety before use.</p>
+            <p style={{color:'brown'}}>WARNING: This item has been reported broken. Please verify safety before use.</p>
     }
 
     return (
@@ -12,8 +12,8 @@ export default function ItemScannedOut({ item }) {
             <div className='card'>
                 <h2>{item.desc}</h2>
                 {broken}
-                <p>{item.instructions}</p>
                 <img src={item.img} />
+                <p>Notes: {item.instructions}</p>
             </div>
             <Done />
         </div>
