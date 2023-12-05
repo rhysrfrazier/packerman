@@ -1,17 +1,19 @@
 import React, { useContext, useEffect, useState } from "react"
 import DataContext from "../DataContext"
 import { useNavigate } from "react-router-dom"
-import PackUnpackHeader from "./PackUnpackHeader"
-import Footer from "./Footer"
 import { BASE_URL } from "../../globals"
 import axios from "axios"
 import { DateTime } from 'luxon'
+import ItemScannedOut from "./ItemScannedOut"
+import Error from "./Error"
+import Footer from "./Footer"
+import PackUnpackHeader from "./PackUnpackHeader"
 
 
 export default function Packing() {
 
     //we'll come back to this to conditionally render certain components?
-    let confirmation
+    const [confirmation, setConfirmation] = useState()
 
     // check that user is logged in and there's an event in useContext
     const navigate = useNavigate()
@@ -19,16 +21,14 @@ export default function Packing() {
     const { event, setEvent } = useContext(DataContext)
 
     useEffect(() => {
-        //fixing that lag issue with setTimeout
-        setTimeout(() => {
+        
             const loggedIn = sessionStorage.getItem('user_id')
             if (!loggedIn) {
                 navigate('/login')
             } 
-            else if (!event) {
+            else if (event === null) {
                 navigate('/pack_or_unpack')
             }
-        }, 400)
     }, [])
 
     // setting up the item_event post
@@ -40,7 +40,6 @@ export default function Packing() {
     const [packedItemId, setPackedItemId] = useState(null)
 
     function handleChange(event) {
-        console.log(event.target.value)
         setPackedItemId(event.target.value)
     }
 
@@ -60,18 +59,20 @@ export default function Packing() {
         try {
             const response = await axios.post(`${BASE_URL}event_items/`, postRow)
 
-            //if the first one works, make a second one for the object
+            //if the first call works, make a second one for the object
             if (response.status === 201) {
+
                 console.log('success')
+
                 const item = (await axios.get(`${BASE_URL}items/${postRow.item_id}`)).data
 
-                // confirmation = <div className='confirmation'>
-                //     {/* <response.data. fuck ok this needs to come from another axios call */}
-                // </div>
+                 setConfirmation(<ItemScannedOut item={item} />)
+
+
             }
         } catch (error) {
-            console.log(error.message)
-            //also want an error component
+            const message = error.message
+            setConfirmation(<Error message={message}/>)
         }
     }
 
@@ -90,7 +91,8 @@ export default function Packing() {
                     <br />
                     <input onKeyDown={handleKeyDown} name='item_id' id='item_id' type='text' onChange={handleChange} />
                 </label>
-                <button onClick={submit}>Submit</button>
+                <button className='medButton' onClick={submit}>Submit</button>
+                {confirmation}
             </div>
             <Footer />
         </div>

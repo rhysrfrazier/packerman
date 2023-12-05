@@ -13,34 +13,36 @@ export default function NewEvent() {
 
     useEffect(() => {
         const loggedIn = sessionStorage.getItem('user_id')
-        if (!loggedIn){
+        if (!loggedIn) {
             navigate('/login')
         }
     }, [])
 
     //stuff for making a new event and carrying the json over
     const [formState, setFormState] = useState({})
-    const { setEvent } = useContext(DataContext)
+    const { event, setEvent } = useContext(DataContext)
 
     function handleChange(event) {
         setFormState({ ...formState, [event.target.name]: event.target.value })
     }
 
-    async function createNew(event) {
-
+    async function createNew(e) {
+        e.preventDefault()
         try {
             const response = await axios.post(`${BASE_URL}events/`, formState)
             if (response.status === 201) {
-                setEvent(response.data)
+                setEvent(() => response.data)
+                goToPacking()
             } else {
                 navigate('/new_trip')
-                console.log('err')
             }
         } catch (error) {
             navigate('/new_trip')
-            event.preventDefault()
-
         }
+    }
+
+    function goToPacking() {
+        navigate('/packing')
     }
 
     return (
@@ -76,7 +78,7 @@ export default function NewEvent() {
                             <input type='text' name='event_type' onChange={handleChange} />
                         </label>
                     </div>
-                    <Link to='/packing' className='medButton' onClick={createNew}>Create Event</Link>
+                    <button className='medButton' onClick={createNew}>Create Event</button>
                 </form>
             </div>
             <Footer />
