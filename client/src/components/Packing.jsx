@@ -16,18 +16,19 @@ export default function Packing() {
     // check that user is logged in and there's an event in useContext
     const navigate = useNavigate()
 
-    //this seems to be breaking something - maybe Context isn't getting set quickly enough for me to get to this page? It just does it the first time I think
     const { event, setEvent } = useContext(DataContext)
 
     useEffect(() => {
-        
-        const loggedIn = sessionStorage.getItem('user_id')
-        if (!loggedIn) {
-            navigate('/login')
-        } else if (!event) {
-            navigate('/pack_or_unpack')
-        }
-
+        //fixing that lag issue with setTimeout
+        setTimeout(() => {
+            const loggedIn = sessionStorage.getItem('user_id')
+            if (!loggedIn) {
+                navigate('/login')
+            } 
+            else if (!event) {
+                navigate('/pack_or_unpack')
+            }
+        }, 400)
     }, [])
 
     // setting up the item_event post
@@ -38,7 +39,7 @@ export default function Packing() {
 
     const [packedItemId, setPackedItemId] = useState(null)
 
-    function handleChange(event){
+    function handleChange(event) {
         console.log(event.target.value)
         setPackedItemId(event.target.value)
     }
@@ -87,7 +88,7 @@ export default function Packing() {
                 <label htmlFor='item_id' className='sr-only'>
                     UUID input
                     <br />
-                    <input onKeyDown={handleKeyDown} name='item_id' id='item_id' type='text' onChange={handleChange}/>
+                    <input onKeyDown={handleKeyDown} name='item_id' id='item_id' type='text' onChange={handleChange} />
                 </label>
                 <button onClick={submit}>Submit</button>
             </div>
