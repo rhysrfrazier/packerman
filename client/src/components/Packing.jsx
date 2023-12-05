@@ -49,7 +49,7 @@ export default function Packing() {
         //id if this actually has to be like this or if the whole thing could have gone in state, but I tried this as part of debugging and it works now so it's staying. Maybe it doesn't need to be in order, idk, but I do not have time to verify that right now.
         const postRow = {
             item_id: packedItemId,
-            event_id: event.id.toString(),
+            event_id: event.toString(),
             packed_date: currentDate.toISODate(),
             unpacked_date: initPackedItem.unpacked_date,
             packed_by_id: sessionStorage.getItem('user_id'),

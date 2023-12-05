@@ -31,7 +31,7 @@ export default function NewEvent() {
         try {
             const response = await axios.post(`${BASE_URL}events/`, formState)
             if (response.status === 201) {
-                setEvent(() => response.data)
+                setEvent(() => response.data.id)
                 goToPacking()
             } else {
                 navigate('/new_trip')

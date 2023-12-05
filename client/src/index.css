@@ -8,8 +8,8 @@ body {
     text-decoration: none;
     color: #331949;
     background-color: #9AC6C5;
-    padding: 1rem 0 1rem 0;
     width: 65vw;
+    padding: 1rem 0 1rem 0;
     border-radius: 5px;
     text-align: center;
     font-weight: 500;
@@ -55,6 +55,7 @@ input {
 .card h2 {
     margin: 0;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .card img {
@@ -105,7 +106,7 @@ input {
     margin-bottom: 2rem;
 }
 
-.sr-only{
+.sr-only {
     color: rgba(0, 0, 0, 0);
     font-size: 1px;
 }
@@ -137,7 +138,7 @@ input {
 }
 
 .logout {
-   
+
     text-decoration: none;
     padding: .5rem 2rem .5rem 2rem;
     border-radius: 5px;
@@ -175,6 +176,15 @@ input {
     box-shadow: 5px 5px 5px #17022d5e;
 }
 
+.dynamicDiv {
+    border: 1px solid red;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 /* new event */
 form {
     height: 50vh;
@@ -203,7 +213,7 @@ form {
     border-radius: 5px;
     border: none;
     color: #360568;
-    background-color: #9AC6C5; 
+    background-color: #9AC6C5;
 }
 
 /* error */
@@ -215,7 +225,7 @@ form {
 
 /* item scanned out */
 
-.itemScannedOut{
+.itemScannedOut {
     display: flex;
     flex-direction: column;
     align-items: center;
