@@ -18,9 +18,18 @@ export default function PackOrUnpack() {
         navigate('/packing')
     }
 
+    function goToUnpacking() {
+        navigate('/unpacking')
+    }
+
     function clickHandler(id) {
         setEvent(() => id)
         goToPacking()
+    }
+
+    function clickUnpack(id) {
+        setEvent(() => id)
+        goToUnpacking()
     }
 
     async function getCurrentTrips() {
@@ -34,7 +43,7 @@ export default function PackOrUnpack() {
             eventIds.add(obj.event_id)
         }
         const eventIdsArr = Array.from(eventIds)
-        //because for loops and async functions aren't vibing together but this STILL ISN'T THE PROBLEM
+        //because for loops and async functions aren't vibing together but this STILL ISN'T THE PROBLEM. explanation and help debugging curtesy of Riley
         const results = []
         for (const id of eventIdsArr) {
             results.push(axios.get(`${BASE_URL}events/${id}`))
@@ -50,8 +59,8 @@ export default function PackOrUnpack() {
             setDynamicDiv(<div className='dynamicDiv'>
                 {currentTrips.map((event) => {
                     return (<div className='subDynaDiv'>
-                        <button className='bigButton' onClick={() => clickHandler(event.id)}>Continue packing for {event.name}</button>
-                        <button className='bigButton'>Unpack from {event.name}</button>
+                        <button className='bigButton' onClick={() => clickHandler(event.id)} key={`continue${event.id}`}>Continue packing for {event.name}</button>
+                        <button className='bigButton' onClick = {() => clickUnpack(event.id)} key={`unpack${event.id}`}>Unpack from {event.name}</button>
                     </div>)
                 })}
             </div>)
