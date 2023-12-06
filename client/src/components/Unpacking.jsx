@@ -7,6 +7,7 @@ import axios from "axios"
 import { BASE_URL } from "../../globals"
 import { DateTime } from "luxon"
 import Error from "./Error"
+import ItemScannedIn from "./ItemScannedIn"
 
 export default function Unpacking() {
 
@@ -51,13 +52,14 @@ export default function Unpacking() {
         const currentDate = DateTime.now()
 
         const allEventItems = (await axios.get(`${BASE_URL}event_items/`)).data
-        const currentItem = allEventItems.find((item) => check(item.event_id, item.item_id))
-        currentItem.unpacked_date = currentDate.toISODate()
-        currentItem.unpacked_by_id = sessionStorage.getItem('user_id')
+        const currentRow = allEventItems.find((item) => check(item.event_id, item.item_id))
+        currentRow.unpacked_date = currentDate.toISODate()
+        currentRow.unpacked_by_id = sessionStorage.getItem('user_id')
         try {
-            const response = await axios.put(`${BASE_URL}event_items/${currentItem.id}`, currentItem)
+            const response = await axios.put(`${BASE_URL}event_items/${currentRow.id}`, currentRow)
             if (response.status === 200){
-                console.log('success')
+                const item = (await axios.get(`${BASE_URL}items/${currentRow.item_id}`)).data
+                setConfirmation(<ItemScannedIn item={item}/>)
             }
         } catch (error) {
             const message = error.message
@@ -78,6 +80,7 @@ export default function Unpacking() {
                     <input onKeyDown={handleKeyDown} name='item_id' id='item_id' type='text' onChange={handleChange} />
                 </label>
                 <button className='medButton' onClick={submit}>Submit</button>
+                {confirmation}
             </div>
             <Footer />
         </div>
