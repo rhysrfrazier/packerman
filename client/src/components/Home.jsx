@@ -1,9 +1,12 @@
 import Footer from "./Footer"
 import HomeHeader from "./HomeHeader"
 import { useNavigate, Link } from "react-router-dom"
-import { useEffect } from "react"
+import React, { useEffect, useContext } from "react"
+import DataContext from "../DataContext"
 
 export default function Home(){
+
+    const { event, setEvent } = useContext(DataContext)
     
     // check that user is logged in
     const navigate = useNavigate()
@@ -13,6 +16,7 @@ export default function Home(){
         if (!loggedIn){
             navigate('/login')
         }
+        setEvent(() => null)
     }, [])
 
     return(

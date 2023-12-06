@@ -1,4 +1,4 @@
-import Done from "./Done"
+import DoneCheck from "./DoneCheck"
 import axios from "axios"
 import { BASE_URL } from "../../globals"
 import { useEffect, useState } from "react"
@@ -32,24 +32,25 @@ export default function ItemScannedIn({ item }) {
 
     return (
         <div className='itemScannedIn'>
-            <div className='toggleBroken'>
-                <label>
-                    Item broken?
-                    <input
-                        type='checkbox'
-                        id='broken'
-                        onChange={toggleBroken}
-                        checked={itemBroken}
-                    />
-                </label>
-            </div>
             <div className='card'>
+                <div className='toggleBroken'>
+                    <label>
+                        Item broken?
+                        <input
+                            type='checkbox'
+                            id='broken'
+                            name='broken'
+                            onChange={toggleBroken}
+                            checked={itemBroken}
+                        />
+                    </label>
+                </div>
                 <h2>{item.desc}</h2>
                 {broken}
                 <img src={item.img} />
                 <p>Notes: {item.instructions}</p>
             </div>
-            <Done />
+            <DoneCheck />
         </div>
     )
 }

@@ -43,7 +43,7 @@ export default function PackOrUnpack() {
             eventIds.add(obj.event_id)
         }
         const eventIdsArr = Array.from(eventIds)
-        //because for loops and async functions aren't vibing together but this STILL ISN'T THE PROBLEM. explanation and help debugging curtesy of Riley
+        //because for loops and async functions don't vibe. explanation courtesy of Riley while helping debug something else
         const results = []
         for (const id of eventIdsArr) {
             results.push(axios.get(`${BASE_URL}events/${id}`))
@@ -59,8 +59,8 @@ export default function PackOrUnpack() {
             setDynamicDiv(<div className='dynamicDiv'>
                 {currentTrips.map((event) => {
                     return (<div className='subDynaDiv'>
-                        <button className='bigButton' onClick={() => clickHandler(event.id)} key={`continue${event.id}`}>Continue packing for {event.name}</button>
-                        <button className='bigButton' onClick = {() => clickUnpack(event.id)} key={`unpack${event.id}`}>Unpack from {event.name}</button>
+                        <button className='bigButton' onClick={() => clickHandler(event.id)} key={'continue'+event.id}>Continue packing for {event.name}</button>
+                        <button className='bigButton' onClick = {() => clickUnpack(event.id)} key={'unpack'+event.id.toString}>Unpack from {event.name}</button>
                     </div>)
                 })}
             </div>)

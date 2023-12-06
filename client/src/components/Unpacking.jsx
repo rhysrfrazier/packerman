@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { BASE_URL } from "../../globals"
 import { DateTime } from "luxon"
-import Error from "./Error"
+import Message from "./Message"
 import ItemScannedIn from "./ItemScannedIn"
 
 export default function Unpacking() {
@@ -63,7 +63,7 @@ export default function Unpacking() {
             }
         } catch (error) {
             const message = error.message
-            setConfirmation(<Error message={message}/>)
+            setConfirmation(<Message message={message}/>)
         }
 
     }

@@ -5,7 +5,7 @@ import { BASE_URL } from "../../globals"
 import axios from "axios"
 import { DateTime } from 'luxon'
 import ItemScannedOut from "./ItemScannedOut"
-import Error from "./Error"
+import Message from "./Message"
 import Footer from "./Footer"
 import PackUnpackHeader from "./PackUnpackHeader"
 
@@ -72,7 +72,7 @@ export default function Packing() {
             }
         } catch (error) {
             const message = error.message
-            setConfirmation(<Error message={message}/>)
+            setConfirmation(<Message message={message}/>)
         }
     }
 

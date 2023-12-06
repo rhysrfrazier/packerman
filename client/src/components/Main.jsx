@@ -7,6 +7,7 @@ import PackOrUnpack from './PackOrUnpack'
 import NewEvent from './NewEvent'
 import Packing from './Packing'
 import Unpacking from './Unpacking'
+import CheckLost from './CheckLost'
 
 export default function Main() {
 
@@ -21,6 +22,7 @@ export default function Main() {
                 <Route path='/new_trip' element={<NewEvent />} />
                 <Route path='/packing' element={<Packing />} />
                 <Route path='/unpacking' element={<Unpacking />} />
+                <Route path='/check_lost' element={<CheckLost />} />
             </Routes>
         </DataContext.Provider>
     )

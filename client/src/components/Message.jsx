@@ -1,4 +1,4 @@
-export default function Error({message}){
+export default function Message({message}){
 
     return(
         <p className='error'>{message}</p>
