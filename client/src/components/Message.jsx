@@ -1,6 +1,6 @@
 export default function Message({message}){
 
     return(
-        <p className='error'>{message}</p>
+        <p className='message'>{message}</p>
     )
 }

@@ -89,7 +89,7 @@ export default function Packing() {
                 <label htmlFor='item_id' className='sr-only'>
                     UUID input
                     <br />
-                    <input onKeyDown={handleKeyDown} name='item_id' id='item_id' type='text' onChange={handleChange} />
+                    <input onKeyDown={handleKeyDown} name='item_id' id='item_id' type='text' onChange={handleChange} className='packingInput'/>
                 </label>
                 <button className='medButton' onClick={submit}>Submit</button>
                 {confirmation}

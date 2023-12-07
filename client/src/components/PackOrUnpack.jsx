@@ -52,15 +52,17 @@ export default function PackOrUnpack() {
         //if there aren't current trips, go to the page where you make new ones
         if (currentTrips.length === 0) {
             setDynamicDiv(<div className='dynamicDiv'>
-                <Link to='/new_trip' className='bigButton'>Pack for a New Trip</Link>
+                <div className='subDynaDiv'>
+                    <Link to='/new_trip' className='bigButton'>Pack for a New Trip</Link>
+                </div>
             </div>)
             // if there's one or more current trip, map over the array and generate the following buttons
         } else {
             setDynamicDiv(<div className='dynamicDiv'>
                 {currentTrips.map((event) => {
                     return (<div className='subDynaDiv'>
-                        <button className='bigButton' onClick={() => clickHandler(event.id)} key={'continue'+event.id}>Continue packing for {event.name}</button>
-                        <button className='bigButton' onClick = {() => clickUnpack(event.id)} key={'unpack'+event.id.toString}>Unpack from {event.name}</button>
+                        <button className='bigButton' onClick={() => clickHandler(event.id)} key={'continue' + event.id}>Continue packing for {event.name}</button>
+                        <button className='bigButton' onClick={() => clickUnpack(event.id)} key={'unpack' + event.id.toString}>Unpack from {event.name}</button>
                     </div>)
                 })}
             </div>)

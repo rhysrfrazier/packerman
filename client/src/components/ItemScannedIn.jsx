@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 
 export default function ItemScannedIn({ item }) {
 
-    const [itemBroken, setItemBroken] = useState(item.needs_repair)
+    const [itemBroken, setItemBroken] = useState(() => item.needs_repair)
 
     let broken
 
@@ -34,16 +34,16 @@ export default function ItemScannedIn({ item }) {
         <div className='itemScannedIn'>
             <div className='card'>
                 <div className='toggleBroken'>
-                    <label>
+                    <label htmlFor='broken'>
                         Item broken?
-                        <input
-                            type='checkbox'
-                            id='broken'
-                            name='broken'
-                            onChange={toggleBroken}
-                            checked={itemBroken}
-                        />
                     </label>
+                    <input
+                        type='checkbox'
+                        id='broken'
+                        name='broken'
+                        onChange={toggleBroken}
+                        defaultChecked={itemBroken}
+                    />
                 </div>
                 <h2>{item.desc}</h2>
                 {broken}
