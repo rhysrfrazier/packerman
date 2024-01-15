@@ -64,6 +64,9 @@ export default function Unpacking() {
         } catch (error) {
             const message = error.message
             setConfirmation(<Message message={message}/>)
+        } finally {
+            const input = document.querySelector('input')
+            input.select()
         }
 
     }
@@ -77,7 +80,14 @@ export default function Unpacking() {
                 <label htmlFor='item_id' className='sr-only'>
                     UUID input
                     <br />
-                    <input onKeyDown={handleKeyDown} name='item_id' id='item_id' type='text' onChange={handleChange} />
+                    <input 
+                    onKeyDown={handleKeyDown}
+                    name='item_id'
+                    id='item_id'
+                    type='text'
+                    onChange={handleChange} 
+                    autoFocus
+                    />
                 </label>
                 <button className='medButton' onClick={submit}>Submit</button>
                 {confirmation}
