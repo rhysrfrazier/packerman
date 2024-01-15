@@ -46,7 +46,6 @@ export default function Packing() {
     async function submit() {
         const currentDate = DateTime.now()
 
-        //id if this actually has to be like this or if the whole thing could have gone in state, but I tried this as part of debugging and it works now so it's staying. Maybe it doesn't need to be in order, idk, but I do not have time to verify that right now.
         const postRow = {
             item_id: packedItemId,
             event_id: event.toString(),

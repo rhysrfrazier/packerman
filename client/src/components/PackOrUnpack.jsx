@@ -37,13 +37,13 @@ export default function PackOrUnpack() {
         const allEventItems = (await axios.get(`${BASE_URL}event_items/`)).data
         //of those, getting only the rows that haven't been unpacked yet
         const activeEventItems = allEventItems.filter((eventItems) => eventItems.unpacked_date === null)
-        //getting an array of all event ids that haven't been unpacked. use of sets to remove duplicates inspired by https://dev.to/will_devs/javascript-how-to-check-if-an-array-has-duplicate-values-cha
+        //getting an array of all event ids that haven't been unpacked
         const eventIds = new Set()
         for (const obj of activeEventItems.values()) {
             eventIds.add(obj.event_id)
         }
         const eventIdsArr = Array.from(eventIds)
-        //because for loops and async functions don't vibe. explanation courtesy of Riley while helping debug something else
+        //because axios calls act strange with loops, line them up and get them to resolve all at once
         const results = []
         for (const id of eventIdsArr) {
             results.push(axios.get(`${BASE_URL}events/${id}`))
