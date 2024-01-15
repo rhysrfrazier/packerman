@@ -35,8 +35,10 @@ export default function PackOrUnpack() {
     async function getCurrentTrips() {
         //getting the event_items rows from back end
         const allEventItems = (await axios.get(`${BASE_URL}event_items/`)).data
+        console.log('getting all event_items:', allEventItems)
         //of those, getting only the rows that haven't been unpacked yet
         const activeEventItems = allEventItems.filter((eventItems) => eventItems.unpacked_date === null)
+        console.log('getting only active event_items', activeEventItems)
         //getting an array of all event ids that haven't been unpacked
         const eventIds = new Set()
         for (const obj of activeEventItems.values()) {

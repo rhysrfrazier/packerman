@@ -21,14 +21,14 @@ export default function Packing() {
     const { event, setEvent } = useContext(DataContext)
 
     useEffect(() => {
-        
-            const loggedIn = sessionStorage.getItem('user_id')
-            if (!loggedIn) {
-                navigate('/login')
-            } 
-            else if (event === null) {
-                navigate('/pack_or_unpack')
-            }
+
+        const loggedIn = sessionStorage.getItem('user_id')
+        if (!loggedIn) {
+            navigate('/login')
+        }
+        else if (event === null) {
+            navigate('/pack_or_unpack')
+        }
     }, [])
 
     // setting up the item_event post
@@ -65,14 +65,18 @@ export default function Packing() {
 
                 const item = (await axios.get(`${BASE_URL}items/${postRow.item_id}`)).data
 
-                 setConfirmation(<ItemScannedOut item={item} />)
+                setConfirmation(<ItemScannedOut item={item} />)
 
 
             }
         } catch (error) {
             const message = error.message
-            setConfirmation(<Message message={message}/>)
+            setConfirmation(<Message message={message} />)
+        } finally {
+            const input = document.querySelector('input')
+            input.select()
         }
+
     }
 
     function handleKeyDown(e) {
@@ -85,10 +89,21 @@ export default function Packing() {
         <div className='componentDiv'>
             <PackUnpackHeader />
             <div className='componentBody'>
-                <label htmlFor='item_id' className='sr-only'>
+                <label htmlFor='item_id'
+                    className='sr-only'
+                >
                     UUID input
                     <br />
-                    <input onKeyDown={handleKeyDown} name='item_id' id='item_id' type='text' onChange={handleChange} className='packingInput'/>
+                    <input
+                        onKeyDown={handleKeyDown}
+                        name='item_id'
+                        id='item_id'
+                        type='text'
+                        onChange={handleChange}
+                        className='packingInput'
+                        autoFocus
+                        onFocus={e => e.currentTarget.select()}
+                        />
                 </label>
                 <button className='medButton' onClick={submit}>Submit</button>
                 {confirmation}
