@@ -102,7 +102,6 @@ export default function Packing() {
                         onChange={handleChange}
                         className='packingInput'
                         autoFocus
-                        onFocus={e => e.currentTarget.select()}
                         />
                 </label>
                 <button className='medButton' onClick={submit}>Submit</button>

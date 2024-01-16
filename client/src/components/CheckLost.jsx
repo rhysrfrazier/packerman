@@ -33,14 +33,16 @@ export default function CheckLost() {
     async function checkLost() {
         if (event) {
             const eventItems = (await axios.get(`${BASE_URL}event_items/`)).data
+            //this gets an array of all everything in event_items where the event matches the current event AND unpacked_date is null:
             const unpackedNull = eventItems.filter((item) => item.event_id === event && !item.unpacked_date)
 
             if (unpackedNull.length === 0) {
-                setMessage(() => 'Everything is unpacked. Welcome home!')
-                setConfirmation(() => <div className='dynamicDiv'>
-                    <Message message={message} />
-                    <Done />
-                </div>)
+                setMessage('Everything is unpacked. Welcome home!')
+                setConfirmation(
+                    <div className='dynamicDiv'>
+                        <Message message={message} />
+                        <Done />
+                    </div>)
             } else {
                 const results = []
                 for (const row of unpackedNull) {
