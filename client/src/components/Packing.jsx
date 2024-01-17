@@ -90,9 +90,9 @@ export default function Packing() {
             <PackUnpackHeader />
             <div className='componentBody'>
                 <label htmlFor='item_id'
-                    className='sr-only'
+                    className='inputInstructions'
                 >
-                    UUID input
+                    Scan an item to pack it:
                     <br />
                     <input
                         onKeyDown={handleKeyDown}

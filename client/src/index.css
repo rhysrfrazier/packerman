@@ -297,6 +297,11 @@ form {
     align-self: center;
 }
 
+.inputInstructions {
+    color: #9AC6C5;
+    font-size: 18px;
+}
+
 /* done or unpack more */
 
 .doneOrUnpack {

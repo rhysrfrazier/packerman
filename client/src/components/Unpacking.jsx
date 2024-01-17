@@ -77,8 +77,8 @@ export default function Unpacking() {
         <div className='componentDiv'>
             <PackUnpackHeader />
             <div className='componentBody'>
-                <label htmlFor='item_id' className='sr-only'>
-                    UUID input
+                <label htmlFor='item_id' className='inputInstructions'>
+                Scan an item to unpack it:
                     <br />
                     <input 
                     onKeyDown={handleKeyDown}
